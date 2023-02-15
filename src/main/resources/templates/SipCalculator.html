@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>SIP Calculator</title>
+<link rel="stylesheet" 
+ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<style>
+    .navbar {
+        background-color: #d9edf7;
+    }
+    
+    input, label {
+    display:block;
+}
+.table{
+width: 28%;
+}
+
+.inr-sign::before{
+content:"\20B9";
+}
+</style>
+
+<body>
+
+    <!-- create navigation bar ( header) -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+               <h2>SIP Calculator</h2>
+               
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br><br><br><br><br>
+    <!-- Create HTML registration form -->
+    <div class="container">
+        <div class="row">
+            
+
+               
+
+                <h1>Calculator</h1>
+
+                <form th:action="@{/SipCalculator}" method="post" 
+                             th:object="${params}">
+                             <div class= "container">
+                             <div class="row">
+                             <div class="col-md-3">
+                    <div class="form-group" >
+                        <label class="control-label" for="principal"> 
+                           Principal Amount:  </label>
+                        <input id="principal" class="form-control" 
+                                 th:field="*{principal}" required 
+                            autofocus="autofocus" />
+                    </div>
+                    </div>
+
+				<div class="col-md-3">
+                    <div class="form-group" >
+                        <label class="control-label" for="interest"> Rate of Interest :
+                         </label> <input id="interest" class="form-control"
+                            th:field="*{interest}" required autofocus="autofocus" 
+                                />
+                    </div>
+                    </div>
+                    <div class="col-md-3">
+		    <div class="form-group" >
+                        <label class="control-label" for="noOfyears"> No of Years of Investing :  
+                         </label> <input id="price" class="form-control"
+                            th:field="*{noOfyears}" required  autofocus="autofocus" 
+                                />
+                    </div>
+		    </div>
+                    </div>
+                    
+                     <div class="row">
+                     <div class="col-md-6">
+                     <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="margin-top:25px;">
+                          Calculate </button>
+                        
+                    </div>
+                    </div>
+                     </div>
+                     
+                     
+                      <div th:if= "${amount != null}">
+                     
+                       <table border="1" class = "table table-striped table-responsive-md">
+                       <tr>
+                        <th>You Invested : </th><th class="inr-sign" th:text ="${principal}"></th>
+                        </tr>
+                        <tr>
+                       <th>Interest Earned : </th><th class="inr-sign" th:text ="${interestEarned}"></th>
+                        </tr>
+                        <tr>
+                        <th>The future value of your SIP investment is :</th><th class="inr-sign" th:text ="${amount}"></th>
+                        </tr>
+                        </table>
+                    
+                    </div>                     
+                    </div>
+                </form>
+        </div>
+    </div>
+    </body>
+</html>
